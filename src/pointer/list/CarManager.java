@@ -29,7 +29,11 @@ public class CarManager {
         String brand = scanner.next();
 
         while (!brand.equals(DONE)){
-            carList.add(getCar(brand));
+            Car car = getCar(brand);
+
+            if (car != null){
+                carList.add(car);
+            }
 
             scanner.nextLine();
             brand = scanner.next();
@@ -55,7 +59,14 @@ public class CarManager {
             }
 
             System.out.println(c + " has diameter smaller than " + diameter + ". Set new one:");
-            cars.set(cars.indexOf(c), getCar(scanner.next()) );
+
+            Car car = null;
+
+            while (car == null) {
+                car = getCar(scanner.next());
+            }
+
+            cars.set(cars.indexOf(c), car);
         }
     }
 
@@ -81,7 +92,7 @@ public class CarManager {
     }
 
     public void doSearch() {
-        System.out.println("ConcreteSearch by color OR diameter OR diameter and color:");
+        System.out.println("Search by color OR diameter OR diameter and color:");
         String input = scanner.nextLine();
 
         while (!input.equals(DONE)) {
