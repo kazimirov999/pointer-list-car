@@ -6,6 +6,7 @@ import pointer.list.Color;
 import java.util.List;
 
 public interface Search {
+    List<Car> getEmptyList();
     List<Car> getAll();
     List<Car> doSearch(Color bodyColor);
     List<Car> doSearch(float diameter);

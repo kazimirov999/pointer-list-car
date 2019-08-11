@@ -10,7 +10,7 @@ public class SteeringWheel {
 
     public void turn(Direction direction) {
         position += direction.getDegree();
-        System.out.println("Sterring wheel position: " + position);
+        System.out.println("Steering wheel position: " + position);
     }
 
     public boolean hasButtons() {

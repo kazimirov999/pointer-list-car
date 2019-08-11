@@ -4,10 +4,6 @@ public class Tank {
     private int tank;
     private float fuel;
 
-    public Tank(int tank, int fuel) {
-        this.tank = tank;
-        this.fuel = fuel;
-    }
 
     public Tank(int tank) {
         this.tank = tank;
@@ -21,12 +17,20 @@ public class Tank {
         return fuel;
     }
 
-    public void setFuel(float fuel) {
+    public float setFuel(float fuel) {
         this.fuel = fuel;
+
+        if (isFull()) {
+            float extraFuel = fuel - tank;
+            this.fuel = tank;
+            return extraFuel;
+        }
+
+        return 0;
     }
 
-    boolean isFull() {
-        return fuel < tank;
+    public boolean isFull() {
+        return fuel > tank;
     }
 
     public boolean isEmpty() {
@@ -35,11 +39,11 @@ public class Tank {
 
     public void reFuel(int fuelVolume){
         System.out.println("You're re-fuel with : " + fuelVolume + " litters.");
-        fuel += fuelVolume;
 
-        if (isFull()) {
-            System.out.println("The tank is full. Not all fuel are needed. Fuel left: " + (fuel - tank));
-            fuel = tank;
+        float extraFuel = setFuel(fuel + fuelVolume);
+
+        if (extraFuel != 0) {
+            System.out.println("The tank is full. Not all fuel are needed. Fuel left: " + extraFuel);
         } else {
             System.out.println("The tank has " + fuel + " litters.");
         }

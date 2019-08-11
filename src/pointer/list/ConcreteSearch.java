@@ -19,7 +19,7 @@ public class ConcreteSearch implements Search {
         List<Car> cars = getEmptyList();
 
         for (Car c : carList) {
-            if (c.getWheels().length > 0 && c.getWheels()[0].getDiameter() == diameter) {
+            if (c.getWheelsDiameter() == diameter) {
                 cars.add(c);
             }
         }
@@ -31,7 +31,7 @@ public class ConcreteSearch implements Search {
         List<Car> cars = doSearch(diameter);
 
         for (Car c : cars) {
-            if (c.getCarColor() != bodyColor){
+            if (c.getColor() != bodyColor){
                 cars.remove(c);
             }
         }
@@ -44,7 +44,7 @@ public class ConcreteSearch implements Search {
         List<Car> cars = getEmptyList();
 
         for (Car c : carList) {
-            if (c.getCarColor() == color) {
+            if (c.getColor() == color) {
                 cars.add(c);
             }
         }
@@ -64,7 +64,7 @@ public class ConcreteSearch implements Search {
         return cars;
     }
 
-    public static List<Car> getEmptyList(){
+    public List<Car> getEmptyList(){
         return new LinkedList<>();
     }
 }

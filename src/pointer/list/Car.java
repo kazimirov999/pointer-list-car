@@ -7,37 +7,29 @@ public class Car {
     private float totalDistance;
 
     private SteeringWheel steeringWheel = new SteeringWheel(false);
-    private final Engine engine;
+    private Engine engine;
     private Wheel[] wheels;
     private final Body body;
-    private final Tank tank;
+    private Tank tank;
 
     public Car(String brand, Color carColor, Wheel... wheels) {
-        this(brand,carColor,60, wheels);
-    }
-
-    public Car(String brand, Color carColor, float gasUsage, Wheel... wheels) {
-        this(brand,carColor,60, gasUsage, wheels);
-    }
-
-    public Car(String brand, Color carColor, int tank, Wheel... wheels) {
-        this(brand,carColor,tank, 8.1f, wheels);
-    }
-
-    public Car(String brand, Color carColor, int tank, float gasUsage, Wheel... wheels) {
-        this(brand,carColor,tank,2.0f, 120, gasUsage, wheels);
-    }
-
-    public Car(String brand, Color carColor, int tank, float volume, int power, float gasUsage, Wheel... wheels) {
         this.brand = brand;
         this.body = new Body(carColor);
         this.wheels = wheels;
-        this.tank = new Tank(tank);
-        this.engine = new Engine(volume, power, gasUsage);
+        this.tank = new Tank(60);
+        this.engine = new Engine(2.0f, 120, 8.1f);
         pumpWheels();
     }
 
-    public Color getCarColor() {
+    public void setEngine(float volume, int power, float gasUsage) {
+        this.engine = new Engine(volume, power, gasUsage);
+    }
+
+    public void setTank(int tank) {
+        this.tank = new Tank(tank);
+    }
+
+    public Color getColor() {
         return body.getColor();
     }
 
@@ -54,10 +46,6 @@ public class Car {
         this.steeringWheel = steeringWheel;
     }
 
-    public Wheel[] getWheels() {
-        return wheels;
-    }
-
     public void start() {
         if (!engine.isOn()) {
             engine.ingine();
@@ -72,12 +60,19 @@ public class Car {
         body.clean();
     }
 
-    public void pumpWheels() {
+    private void pumpWheels() {
         for (Wheel wheel : wheels) {
             wheel.pump();
         }
 
         System.out.println("Wheels are pumped.");
+    }
+
+    public void changeWheelsDiameter(float multiply) {
+        for (Wheel wheel : wheels) {
+            wheel.setDiameter(multiply * wheel.getDiameter());
+        }
+
     }
 
     public void drive(int km) {
@@ -126,6 +121,10 @@ public class Car {
         if (engine.isOn()) {
             engine.stop();
         }
+    }
+
+    public float getWheelsDiameter() {
+        return wheels.length > 0 ? wheels[0].getDiameter() : 0;
     }
 
     @Override
