@@ -15,15 +15,15 @@ public class CarManager {
     private static final String EMPTY_STRING = "";
 
     private final Scanner scanner;
-    private final Search carSearch;
+    private List<Car> carList = new LinkedList<>();
 
     public CarManager(InputStream source) {
         this.scanner = new Scanner(source);
-        this.carSearch = new ConcreteSearch(initCarList());
+        initCarList(carList);
     }
 
     public List<Car> getAllCars() {
-        return carSearch.getAll();
+        return carList;
     }
 
     public void doSearch() {
@@ -40,13 +40,13 @@ public class CarManager {
             try {
                 if (params.length == 1) {
                     System.out.println(Color.hasValue(params[0]) ?
-                            carSearch.doSearch(Color.toEnum(params[0])) :
-                            carSearch.doSearch(Float.parseFloat(params[0])));
+                            doSearch( car -> car.getColor() == Color.toEnum(params[0])) :
+                            doSearch(car -> car.getWheelsDiameter() == Float.parseFloat(params[0])));
                 } else if (params.length == 2) {
-                    if (Color.hasValue(params[1])) {
-                       System.out.println(carSearch.doSearch(Float.parseFloat(params[0]),
-                               Color.toEnum(params[1])));
-                    } else {
+                    if (Color.hasValue(params[1])){
+                        System.out.println(doSearch(car ->
+                                (car.getWheelsDiameter() == Float.parseFloat(params[0]) && car.getColor() == Color.toEnum(params[1]))));
+                    } else  {
                         System.out.println("Color '" + params[1] + "' isn't allowed. Allowed colors: "
                                 + Arrays.toString(Color.values()));
                     }
@@ -76,7 +76,7 @@ public class CarManager {
             return;
         }
 
-        List<Car> cars = carSearch.doSearch(Color.toEnum(next));
+        List<Car> cars = doSearch(car -> car.getColor() == Color.toEnum(next));
 
         for (Car c : cars) {
             c.setSteeringWheel(new SteeringWheel(true));
@@ -93,22 +93,18 @@ public class CarManager {
         }
 
         float diameter = Float.parseFloat(next);
-        List<Car> cars = carSearch.getAll();
+
+        List<Car> cars = doSearch(car -> car.getWheelsDiameter() >= diameter);
 
         for (Car c : cars) {
-            if (c.getWheelsDiameter() >= diameter){
-                continue;
-            }
-
             System.out.println(c + " has diameter smaller than " + diameter + ". Set new one:");
-
             Car car = null;
 
             while (car == null) {
                 car = buildNewCar(scanner.next());
             }
 
-            cars.set(cars.indexOf(c), car);
+            carList.set(carList.indexOf(c), car);
         }
     }
 
@@ -124,7 +120,7 @@ public class CarManager {
             return;
         }
 
-        List<Car> cars = carSearch.doSearch(steeringWheelHasButtons);
+        List<Car> cars = doSearch(car -> car.getSteeringWheel().hasButtons() == steeringWheelHasButtons);
 
         for (Car car : cars) {
             car.changeWheelsDiameter(2);
@@ -133,7 +129,7 @@ public class CarManager {
     }
 
     public void exitIfEmpty() {
-        if (carSearch.getAll().size() > 0){
+        if (carList.size() > 0){
             return;
         }
 
@@ -145,9 +141,9 @@ public class CarManager {
         scanner.close();
     }
 
-    private List<Car> initCarList() {
-        List<Car> carList = carSearch.getEmptyList();
-        System.out.println("Type car brand, " + Arrays.toString(Color.values())+ " color and wheel diameter. Type 'done' for finish.");
+    private void initCarList(List<Car> list) {
+        System.out.println("Type car brand, " + Arrays.toString(Color.values())
+                + " color and wheel diameter. Type 'done' for finish.");
 
         String brand = scanner.next();
 
@@ -155,16 +151,25 @@ public class CarManager {
             Car car = buildNewCar(brand);
 
             if (car != null){
-                carList.add(car);
+                list.add(car);
             }
 
             scanner.nextLine();
             brand = scanner.next();
         }
-
-        return carList;
     }
 
+    private List<Car> doSearch(Search search) {
+        List<Car> cars = new LinkedList<>();
+
+        for (Car c : carList) {
+            if (search.doSearch(c)) {
+                cars.add(c);
+            }
+        }
+
+        return cars;
+    }
 
     private Car buildNewCar(String brand) {
         String color = scanner.next();
