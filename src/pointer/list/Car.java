@@ -13,11 +13,16 @@ public class Car {
     private Tank tank;
 
     public Car(String brand, Color carColor, Wheel... wheels) {
+        this(brand, new Body(carColor), new Engine(2.0f, 120, 8.1f),
+                new Tank(60), wheels);
+    }
+
+    public Car(String brand, Body body, Engine engine, Tank tank, Wheel... wheels) {
         this.brand = brand;
-        this.body = new Body(carColor);
+        this.body = body;
+        this.engine = engine;
+        this.tank = tank;
         this.wheels = wheels;
-        this.tank = new Tank(60);
-        this.engine = new Engine(2.0f, 120, 8.1f);
         pumpWheels();
     }
 
