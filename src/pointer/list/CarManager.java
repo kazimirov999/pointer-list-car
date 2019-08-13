@@ -38,20 +38,16 @@ public class CarManager {
 
             String[] params = input.split(" ");
             try {
-                if (params.length == 1) {
-                    System.out.println(Color.hasValue(params[0]) ?
-                            doSearch( car -> car.getColor() == Color.toEnum(params[0])) :
-                            doSearch(car -> car.getWheelsDiameter() == Float.parseFloat(params[0])));
-                } else if (params.length == 2) {
-                    if (Color.hasValue(params[1])){
-                        System.out.println(doSearch(car ->
-                                (car.getWheelsDiameter() == Float.parseFloat(params[0]) && car.getColor() == Color.toEnum(params[1]))));
-                    } else  {
-                        System.out.println("Color '" + params[1] + "' isn't allowed. Allowed colors: "
-                                + Arrays.toString(Color.values()));
-                    }
-                } else {
-                    System.out.println("Wrong parameters count.");
+                switch (params.length) {
+                    case 1:
+                        searchByOneParameter(params);
+                        break;
+                    case 2:
+                        searchByTwoParameters(params);
+                        break;
+                    default:
+                        System.out.println("Wrong parameters count.");
+                        break;
                 }
             } catch (NumberFormatException nex) {
                 System.out.println("Wheel diameter should be float");
@@ -61,6 +57,33 @@ public class CarManager {
         }
     }
 
+    private void searchByOneParameter(String[] params) {
+        if (params.length != 1) {
+            System.out.println("Wrong parameters count.");
+            return;
+        }
+
+        if (Color.hasValue(params[0])) {
+            System.out.println(doSearch(car -> car.getColor() == Color.toEnum(params[0])));
+        } else {
+            System.out.println(doSearch(car -> car.getWheelsDiameter() == Float.parseFloat(params[0])));
+        }
+    }
+
+    private void searchByTwoParameters(String[] params) {
+        if (params.length != 2) {
+            System.out.println("Wrong parameters count.");
+            return;
+        }
+
+        if (Color.hasValue(params[1])) {
+            System.out.println(doSearch(car ->
+                    (car.getWheelsDiameter() == Float.parseFloat(params[0]) && car.getColor() == Color.toEnum(params[1]))));
+        } else {
+            System.out.println("Color '" + params[1] + "' isn't allowed. Allowed colors: "
+                    + Arrays.toString(Color.values()));
+        }
+    }
 
     public void changeSteeringWheel() {
         System.out.println("Change steering wheel to wheel with buttons for all car with some color. Set color:");
