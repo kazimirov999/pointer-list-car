@@ -4,16 +4,8 @@ public class Wheel {
     private int diameter;
 
     Wheel() {
-        this(2.34f, 15);
-    }
-
-    Wheel(float pressure) {
-        this.pressure = pressure;
-    }
-
-    Wheel(float pressure, int diameter) {
-        this.pressure = pressure;
-        this.diameter = diameter;
+        this.pressure = 2.34f;
+        this.diameter = 15;
     }
 
     Wheel(int diameter) {
@@ -22,8 +14,8 @@ public class Wheel {
 
     void pump(float pressure) {
         this.pressure += pressure;
-        System.out.println("Pumping your wheels for " + pressure + "\n" +
-                "Now pressure is " + this.pressure);
+        System.out.println("Pumping your wheels for " + pressure +
+                "\nNow pressure is " + this.pressure);
     }
 
     public float getPressure() {

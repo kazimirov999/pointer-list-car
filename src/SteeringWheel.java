@@ -1,36 +1,28 @@
 public class SteeringWheel {
 
-    private String steeringWheelType;
-    private float position;
+    private boolean isMuiltifunctioned;
+    private float position = 180;
 
-    SteeringWheel(float position) {
-        this.position = position;
-        this.steeringWheelType = "Common";
-    }
-
-    SteeringWheel(float position, String steeringWheelType) {
-        this.position = position;
-        this.steeringWheelType = steeringWheelType;
-    }
-
-    SteeringWheel() {
-        this(180, "Common");
+    SteeringWheel(boolean isMuiltifunctioned) {
+        this.isMuiltifunctioned = isMuiltifunctioned;
     }
 
     void turn(float angle) {
         this.position += angle;
 
-        System.out.println("You're turning for " + angle + " angles\n" +
-                "Your steering wheel's position is at " + position + " angles now");
+        System.out.println("You're turning for " + angle + " angles" +
+                "\nYour steering wheel's position is at " + position + " angles now");
     }
 
     public float getPosition() {
         return position;
     }
-    public void setSteeringWheelType(String steeringWheelType) {
-        this.steeringWheelType = steeringWheelType;
+
+    public void setType(boolean isMuiltifunctioned) {
+        this.isMuiltifunctioned = isMuiltifunctioned;
     }
-    public String getSteeringWheelType() {
-        return steeringWheelType;
+
+    public boolean isMuiltifunctioned() {
+        return isMuiltifunctioned;
     }
 }
