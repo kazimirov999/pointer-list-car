@@ -9,9 +9,9 @@ public class Engine {
 
     void engage() {
         if (tank.hasFuel()) {
-            System.out.println("You have not enough fuel. Fill the car first.");
-        } else {
             System.out.println("The car is on.");
+        } else {
+            System.out.println("You have not enough fuel. Fill the car first.");
         }
     }
 
