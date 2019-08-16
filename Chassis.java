@@ -3,9 +3,9 @@ public class Chassis {
     private Wheel[] backWheels;
 
 
-    public Chassis(Wheel[] frontWheels, Wheel[] backWheels) {
-        this.frontWheels = frontWheels;
-        this.backWheels = backWheels;
+    public Chassis(float pressure) {
+        this.frontWheels = new Wheel[]{new Wheel(pressure),new Wheel(pressure)};
+        this.backWheels = new Wheel[]{new Wheel(pressure),new Wheel(pressure)};
     }
 
     void turn(String dir) {
@@ -52,16 +52,8 @@ public class Chassis {
     public Wheel[] getFrontWheels() {
         return frontWheels;
     }
-
-    public void setFrontWheels(Wheel[] frontWheels) {
-        this.frontWheels = frontWheels;
-    }
-
     public Wheel[] getBackWheels() {
         return backWheels;
     }
 
-    public void setBackWheels(Wheel[] backWheels) {
-        this.backWheels = backWheels;
-    }
 }

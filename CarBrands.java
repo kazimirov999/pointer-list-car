@@ -1,11 +1,20 @@
 public enum CarBrands {
-
-    AUDI(3.0f), BMW(2.0f), DODGE(3.8f), HONDA(1.5f), TOYOTA(5.7f);
+    AUDI("AUDI", 3.0f, 233,70),
+    BMW("BWM", 2.0f,184,70),
+    DODGE("DODGE", 3.8f,215,76),
+    HONDA("HONDA", 1.5f,86,70),
+    TOYOTA("TOYOTA", 5.7f,386,99);
 
     private float engiveVolume;
+    private String title;
+    private int enginePower;
+    private float tankMaxVolume;
 
-    CarBrands(float engiveVolume) {
+    CarBrands(String title, float engiveVolume, int enginePower, float tankMaxVolume) {
         this.engiveVolume = engiveVolume;
+        this.title = title;
+        this.enginePower=enginePower;
+        this.tankMaxVolume=tankMaxVolume;
     }
 
 
@@ -15,11 +24,19 @@ public enum CarBrands {
         }
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public float getEngiveVolume() {
         return engiveVolume;
     }
 
-    public void setEngiveVolume(float engiveVolume) {
-        this.engiveVolume = engiveVolume;
+    public int getEnginePower() {
+        return enginePower;
+    }
+
+    public float getTankMaxVolume() {
+        return tankMaxVolume;
     }
 }

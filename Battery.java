@@ -1,5 +1,4 @@
 public class Battery {
-
     private int charge;
     private static final int MAX_CHARGE = 100;
 
@@ -30,9 +29,5 @@ public class Battery {
 
     public int getCharge() {
         return charge;
-    }
-
-    public void setCharge(int charge) {
-        this.charge = charge;
     }
 }

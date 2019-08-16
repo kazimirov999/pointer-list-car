@@ -1,7 +1,5 @@
 public class Engine {
 
-    private Tank tank;
-    private Battery battery;
     public double milageFromEngine;
     private float volume;
     private float power;
@@ -9,14 +7,12 @@ public class Engine {
     private boolean ignition = false;
     private boolean fuelAccess = false;
 
-    public Engine(float volume, float power, int charge, float fuel) {
+    public Engine(float volume, float power) {
         this.volume = volume;
         this.power = power;
-        this.battery = new Battery(charge);
-        this.tank = new Tank(fuel);
     }
 
-    void ignite() {
+    void ignite(Battery battery, Tank tank) {
         if (battery.giveCharge() == 20) {
             ignition = true;
 
@@ -35,7 +31,7 @@ public class Engine {
         }
     }
 
-    void work(float km) {
+    void work(Tank tank, Battery battery,float km) {
         if (ignition == true && fuelAccess == true) {
             tank.fuelFeed(volume * CONSUMPION * km);
             if (tank.getFuelVolume() <= 0) {
@@ -65,31 +61,9 @@ public class Engine {
         return volume;
     }
 
-    public void setVolume(float volume) {
-        this.volume = volume;
-    }
 
     public float getPower() {
         return power;
     }
 
-    public void setPower(float power) {
-        this.power = power;
-    }
-
-    public Tank getTank() {
-        return tank;
-    }
-
-    public void setTank(Tank tank) {
-        this.tank = tank;
-    }
-
-    public Battery getBattery() {
-        return battery;
-    }
-
-    public void setBattery(Battery battery) {
-        this.battery = battery;
-    }
 }

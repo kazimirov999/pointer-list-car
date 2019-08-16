@@ -1,16 +1,13 @@
 public class SteeringWheel {
-
-    public Chassis chassis;
     private float position;
     private String type;
     static final String DEFAULT_TYPE = "MK_1";
 
-    public SteeringWheel(Chassis chassis) {
-        this.chassis = chassis;
+    public SteeringWheel() {
         this.type = DEFAULT_TYPE;
     }
 
-    public void turn(Direction direction) {
+    public void turn(Chassis chassis, Direction direction) {
         position += direction.getDegree();
         System.out.println("Sterring wheel position: " + position);
         chassis.turn(direction.name());

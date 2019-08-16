@@ -1,15 +1,16 @@
 public class Tank {
 
     private float fuelVolume;
-    private static final float MAX_FUEL_VOLUME = 150.0f;
+    private float maxFuelVolume;
 
-    public Tank(float fuelVolume) {
+    public Tank(float maxFuelVolume,float fuelVolume) {
+        this.maxFuelVolume=maxFuelVolume;
         if (fuelVolume > 0) {
-            if (fuelVolume <= MAX_FUEL_VOLUME) {
+            if (fuelVolume <= maxFuelVolume) {
                 this.fuelVolume = fuelVolume;
                 System.out.println("Fuel level: " + fuelVolume);
             } else {
-                this.fuelVolume = MAX_FUEL_VOLUME;
+                this.fuelVolume = maxFuelVolume;
                 System.out.println("Fuel MAX");
             }
         } else {
@@ -30,8 +31,8 @@ public class Tank {
 
     void reFuel(float fuel) {
         fuelVolume = fuelVolume + fuel;
-        if (fuelVolume > MAX_FUEL_VOLUME) {
-            fuelVolume = MAX_FUEL_VOLUME;
+        if (fuelVolume > maxFuelVolume) {
+            fuelVolume = maxFuelVolume;
             System.out.println("Fuel level:" + fuelVolume);
         } else {
             System.out.println("Fuel level: " + fuelVolume);
