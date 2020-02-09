@@ -20,11 +20,11 @@ public class Main {
         cars.add(mazda);
 
         carsManager.diameterList();
-        carsManager.findDiameter(15);
-        carsManager.findDiameterAndColor(16, "Purple");
-        carsManager.changeRadiusSteeringWheelonGreenCar(17);
-        carsManager.changeDiameterWheels(40);
-        carsManager.changeCars(17);
+        carsManager.findDiameter();
+        carsManager.findDiameterAndColor();
+        carsManager.changeRadiusSteeringWheelOnGreenCar();
+        carsManager.changeDiameterWheels();
+        carsManager.changeCars();
 
 
     }
