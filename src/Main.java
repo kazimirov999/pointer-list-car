@@ -4,17 +4,25 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Car> carList = new ArrayList<>();
-        carList.add(new Car("Ferrari", "Testarossa", "White", 20, 10, false));
-        carList.add(new Car("Mazda", "RX-8", "White", 14, 15, true));
-        carList.add(new Car("Ford", "GT-40", "Red", 18, 14, false));
-        carList.add(new Car("Audi", "Quatro", "Black", 20, 12, true));
-        carList.add(new Car("Toyota", "Celica", "Orange", 16, 11, false));
-        carList.add(new Car("Opel", "Manta", "Green", 17, 14, false));
-        carList.add(new Car("Nissan", "Patrol", "Silver", 19, 15, true));
-        carList.add(new Car("Toyota", "Hillux", "White", 22, 16, true));
+        CarSearch carSearch = new CarSearch();
+        carList.add(new Car("Ferrari", "Testarossa", Color.WHITE, 20, 10, false));
+        carList.add(new Car("Mazda", "RX-8", Color.RED, 14, 15, true));
+        carList.add(new Car("Ford", "GT-40", Color.ORANGE, 18, 14, false));
+        carList.add(new Car("Audi", "Quatro", Color.RED, 20, 12, true));
+        carList.add(new Car("Toyota", "Celica", Color.ORANGE, 16, 11, false));
+        carList.add(new Car("Opel", "Manta", Color.GREEN, 17, 14, false));
+        carList.add(new Car("Nissan", "Patrol", Color.BLACK, 19, 15, true));
+        carList.add(new Car("Toyota", "Hillux", Color.WHITE, 22, 16, true));
 
+        System.out.println("Searching by color and Radius:");
+        carSearch.findCarsWithBodyAndRadius(carList);
 
-        CarSearch.findCarsWithBodyAndRadius(carList);
+        System.out.println("\nSearching by Radius:");
+        carSearch.findCarsWheelRadius(carList);
+
+        System.out.println("\nSearching by Radius:");
+        carSearch.exchangeCarIfWheelsSmaller(carList);
+
 
     }
 }
