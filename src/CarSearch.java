@@ -24,7 +24,7 @@ public class CarSearch {
         try {
             System.out.println("Write R' wheel to find a suitable car- ");
             inputRadius = scanInt.nextInt();
-            System.out.println("Write your color to find a suitable car \n (1 - WHITE, 2 - BLUE, 3 - GREEN, 4 - RED, 5 - ORANGE) ");
+            System.out.println("Write your color to find a suitable car \n (1 - WHITE, 2 - BLACK, 3 - GREEN, 4 - RED, 5 - ORANGE) ");
             inputColor = scanStr.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("Exception");
