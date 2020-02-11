@@ -2,14 +2,14 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Wheel {
-    private int[]wheels= new int[4];
+    private int[] wheels = new int[4];
     private int wheelRadius;
 
-    public Wheel(int wheelRadius){
-        this.wheelRadius=wheelRadius;
+    public Wheel(int wheelRadius) {
+        this.wheelRadius = wheelRadius;
     }
 
-    public int getWheelRadius(){
+    public int getWheelRadius() {
         return wheelRadius;
     }
 
@@ -24,11 +24,12 @@ public class Wheel {
     public void setWheelRadius(int wheelRadius) {
         this.wheelRadius = wheelRadius;
     }
-    public void set_Wheel_Radius(int i){
-        wheels[0]=wheelRadius;
-        wheels[1]=wheelRadius;
-        wheels[2]=wheelRadius;
-        wheels[3]=wheelRadius;
+
+    public void set_Wheel_Radius(int i) {
+        wheels[0] = wheelRadius;
+        wheels[1] = wheelRadius;
+        wheels[2] = wheelRadius;
+        wheels[3] = wheelRadius;
     }
 
     @Override

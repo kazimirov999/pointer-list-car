@@ -23,6 +23,12 @@ public class Main {
         System.out.println("\nSearching by Radius:");
         carSearch.exchangeCarIfWheelsSmaller(carList);
 
+        System.out.println("\nExchanging Steeringwheel on  red cars:");
+        carSearch.exchangeSteeringWheelOnRedCars(carList);
+
+        System.out.println("\nExchanging  wheels  on cars:");
+        carSearch.exchangeCarIfWheelsSmaller(carList);
+
 
     }
 }
